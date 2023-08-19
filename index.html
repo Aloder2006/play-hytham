@@ -1,1 +1,48 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+</head>
+<body>
+
+<h2>Guess the Number Game</h2>
+<p>We have selected a random number between 1 and 10. See if you can guess it in 3 attempts or less.</p>
+
+<div class="form">
+    <input type="text" id="guessInput" placeholder="Enter a number between 1-10">
+    <button onclick="checkGuess()">Submit Guess</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+    let attempts = 3;
+
+    function checkGuess() {
+        let userGuess = document.getElementById('guessInput').value;
+        attempts--;
+
+        if (userGuess == randomNumber) {
+            document.getElementById('result').innerHTML = "Congratulations! You guessed the right number.";
+            endGame();
+        } else if (attempts <= 0) {
+            document.getElementById('result').innerHTML = "Sorry, you've used all your attempts. The number was " + randomNumber + ".";
+            endGame();
+        } else if (userGuess < randomNumber) {
+            document.getElementById('result').innerHTML = "Your guess is too low. You have " + attempts + " attempts left.";
+        } else {
+            document.getElementById('result').innerHTML = "Your guess is too high. You have " + attempts + " attempts left.";
+        }
+    }
+
+    function endGame() {
+        document.querySelector('.form').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
